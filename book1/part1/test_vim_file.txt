@@ -1,0 +1,12 @@
+Я решил сделать этот файл для ковыряения нескольких комманд в виме.
+
+Есть, к примеру, файловые команды и просто команды
+
+
+Сейчас посмотрим как и что работает.
+sdasdasdasdasdsasdad
+sdaksdasjdkasdl
+
+asdkddjjddskalasdj
+asdjddjdjdsallkjasd
+aasd, .asdasddd asasdasdajsdhkashjdkad

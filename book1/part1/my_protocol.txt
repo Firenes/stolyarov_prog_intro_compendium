@@ -1,0 +1,20 @@
+Script started on Sat Dec  4 19:21:08 2021
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBook-Pro-Nikita.local/Users/nikitashumilin/Stolyarov/book1[0m[27m[24m[Jnikitashumilin@MacBook-Pro-Nikita book1 % [K[?2004he lls[?2004l
+TEST				scripts
+bash_commands.txt		test_mc
+bash_file_name_templates.txt	test_vim_file.txt
+env_var.txt			tutor
+file_permission.txt		vim_commands.png
+loggin.txt			vim_file_commands.png
+manual.txt			vimrc
+my_protocol.txt
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBook-Pro-Nikita.local/Users/nikitashumilin/Stolyarov/book1[0m[27m[24m[Jnikitashumilin@MacBook-Pro-Nikita book1 % [K[?2004heecho hello[?2004l
+hello
+[1m[7m%[27m[1m[0m                                                                                ]7;file://MacBook-Pro-Nikita.local/Users/nikitashumilin/Stolyarov/book1[0m[27m[24m[Jnikitashumilin@MacBook-Pro-Nikita book1 % [K[?2004h[?2004l
+Saving session...
+...copying shared history...
+...saving history...truncating history files...
+...completed.
+Deleting expired sessions...     143 completed.
+
+Script done on Sat Dec  4 19:21:25 2021
