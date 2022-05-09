@@ -1,0 +1,7 @@
+mkdir tetris
+cp tetris.pas tetris
+cd tetris
+ls
+
+
+answer –– tetris.pas

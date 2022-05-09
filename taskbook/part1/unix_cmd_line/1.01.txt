@@ -1,0 +1,4 @@
+current dir: /opt/light/foo
+
+abs name of f1.txt –– /opt/light/bar/f1.txt
+short from current –– ../bar/f1.txt

@@ -1,0 +1,10 @@
+current –– /home/lizzie/work/pas/tetris
+
+cd .. –– /home/lizzie/work/pas
+cd ../.. –– /home/lizzie
+cd ../john –– /home/john
+cd work/tetris/src –– /home/john/work/tetris/src
+cd .. –– /home/john/work/tetris
+
+
+answer –– /home/john/work/tetris
