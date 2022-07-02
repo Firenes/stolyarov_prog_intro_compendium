@@ -1,0 +1,8 @@
+chmod
+
+a) 0700 –– -rwx------
+b) 0711 –– -rwxr--r--
+c) 0751 –– -rwxr-xr--
+d) 0733 –– -rwxrw-rw-
+e) 0744 –– -rwxr--r-- (better use 0700 or 0755)
+f) 0660 –– --wx-wx--- (better use 0770)
