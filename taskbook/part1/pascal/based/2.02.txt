@@ -1,0 +1,10 @@
+What will be in a and b?
+
+a := 3;
+b := 5;
+a := b;
+b := a:
+
+
+a = 5
+b = 5

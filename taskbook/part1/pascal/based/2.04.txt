@@ -1,0 +1,9 @@
+What is x, if at start it is 7?
+
+x := 7;
+
+x := x + 3;
+x := 100 - x;
+x := 10 * x + x;
+
+x = 990

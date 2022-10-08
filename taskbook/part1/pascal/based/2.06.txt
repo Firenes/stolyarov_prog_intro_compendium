@@ -1,0 +1,40 @@
+What is output?
+
+a)
+i := 0;
+repeat
+	writeln('Hello');
+	i := i + 1
+until i > 10;
+
+Hello 11x
+
+
+b)
+i := 1;
+repeat
+	writeln('Good Bye');
+	i := i + 1
+until i > 20;
+
+Good Bye 20x
+
+
+c)
+i := 12
+repeat
+	writeln('abrakadabra')
+	i := i - 1
+until i > 0;
+
+abrakadabra 1x
+
+
+d)
+i := 12
+repeat
+	writeln('abcdefgh');
+	i := i + 1
+until i < 100;
+
+abcdefgh 1x
