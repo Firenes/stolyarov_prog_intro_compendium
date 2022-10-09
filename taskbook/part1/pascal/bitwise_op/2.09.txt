@@ -1,0 +1,89 @@
+What is output?
+
+a)
+99 and 78
+99 -> 01100011
+78 -> 01001110
+
+Output
+66 -> 01000010
+
+
+b)
+99 or 78
+99 -> 01100011
+78 -> 01001110
+
+Output
+111 -> 01101111
+
+
+c)
+99 xor 78
+99 -> 01100011
+78 -> 01001110
+
+Output
+45 -> 00101101 
+
+
+d)
+not 0
+
+Output
+-1
+
+
+e)
+not -13
+
+Output
+12
+
+
+f)
+not 177
+
+Output
+-178
+
+
+g)
+1 shl 7
+
+Output
+128
+
+
+h)
+7 shl 2
+
+Output
+28
+
+
+i)
+255 shr 4
+
+Output
+15
+
+
+j)
+240 shr 3
+
+Output
+30
+
+k)
+42 shr 3
+
+Output
+5
+
+
+l)
+-2 shl 2
+
+Output
+-8
