@@ -21,6 +21,7 @@ begin
 	writeln;
 end;
 
+{ Main part of program }
 var
 	n, h, i: integer;
 
