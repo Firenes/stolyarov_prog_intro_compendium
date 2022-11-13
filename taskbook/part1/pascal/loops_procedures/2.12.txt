@@ -1,0 +1,1 @@
+Solution in diamond_with_inverted.pas
