@@ -1,0 +1,1 @@
+Soultion in non_space_symbols.pas
