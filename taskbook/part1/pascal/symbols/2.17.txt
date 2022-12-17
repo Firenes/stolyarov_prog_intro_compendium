@@ -1,0 +1,1 @@
+Solution in vertical_ascii.pas

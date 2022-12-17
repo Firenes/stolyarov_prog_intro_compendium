@@ -25,7 +25,7 @@ begin
 		write(i , '.|');
 		{ print line of table }
 		for j := 0 to 15 do
-			write('  ', char(i*16 + j));
+			write('  ', char(i * 16 + j));
 		writeln
 	end
 end.
