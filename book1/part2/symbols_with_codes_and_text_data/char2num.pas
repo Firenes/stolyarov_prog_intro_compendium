@@ -13,10 +13,8 @@ begin
 	pos := 0;
 
 	repeat
-		writeln('Start reading first');
 		read(c);
 		pos := pos + 1;
-		writeln('pos: ', pos, ' c: ', c);
 	until (c <> ' ') and (c <> #10);
 
 	while (c <> ' ') and (c <> #10) do
@@ -28,11 +26,9 @@ begin
 			success := false;
 			exit
 		end;
-		writeln('Start reading second');
 		res := res * 10 + ord(c) - ord('0');
 		read(c);
 		pos := pos + 1;
-		writeln('pos: ', pos, ' c: ', c, ' res: ', res);
 	end;
 
 	result := res;
