@@ -31,7 +31,7 @@ begin
 end;
 
 
-// (a) part
+// (a)
 procedure CountWords(ch: char; var count: longint; var known, print: boolean);
 begin
 	if isCharSpacing(ch) then
@@ -96,6 +96,32 @@ begin
 end;
 
 
+// (e)
+procedure CountWordsInString(ch: char; wCount: longint; var wInString: longint);
+begin
+	if ch = #10 then
+	begin
+		writeln('count in string: ', wCount - wInString);
+		wInString := wCount;
+	end
+end;
+
+procedure CountLongestAndShortestWords(ch: char; charsInWordCount: longint;
+									   var longest, shortest: longint);
+begin
+	if IsCharSpacing(ch) then
+	begin
+		if charsInWordCount > longest then
+			longest := charsInWordCount
+		else
+		begin
+			if (shortest = 0) or (charsInWordCount < shortest) then
+				shortest := charsInWordCount
+		end
+	end
+end;
+
+
 { Main }
 
 var
@@ -112,6 +138,9 @@ var
 	isStartedFromA: boolean;
 	fromAtoZWordCount: longint;
 
+	wInString: longint;
+	longest, shortest: longint;
+
 begin
 	while not eof do
 	begin
@@ -127,6 +156,9 @@ begin
 		// (d)
 		SaveLastWordChar(ch, lastChar);
 		CountWordsStartAEndZ(ch, lastChar, charsInWordCount, isStartedFromA, fromAtoZWordCount);
+		// (e)
+		CountLongestAndShortestWords(ch, charsInWordCount, longest, shortest);
+		CountWordsInString(ch, wCount, wInString);
 
 		ClearCountingCharsInWord(ch, charsInWordCount);
 	end;	
@@ -137,5 +169,7 @@ begin
 	writeln('more than seven: ', moreSevenCount);
 	writeln('less than two: ', lessTwoCount);
 	writeln('started A, ended z: ', fromAtoZWordCount);
+	writeln('longest: ', longest);
+	writeln('shortest: ', shortest);
 end.
 
