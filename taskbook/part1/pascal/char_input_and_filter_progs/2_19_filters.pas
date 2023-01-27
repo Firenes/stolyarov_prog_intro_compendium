@@ -106,18 +106,58 @@ begin
 	end
 end;
 
-procedure CountLongestAndShortestWords(ch: char; charsInWordCount: longint;
-									   var longest, shortest: longint);
+
+procedure CountLongestWord(ch: char; charsInWordCount: longint; var longest: longint);
 begin
 	if IsCharSpacing(ch) then
 	begin
 		if charsInWordCount > longest then
 			longest := charsInWordCount
-		else
-		begin
-			if (shortest = 0) or (charsInWordCount < shortest) then
-				shortest := charsInWordCount
-		end
+	end
+end;
+
+procedure CountShortestWord(ch: char; charsInWordCount: longint; var shortest: longint);
+begin
+	if IsCharSpacing(ch) then
+	begin
+		if (shortest = 0) or (charsInWordCount < shortest) then
+			shortest := charsInWordCount
+	end
+end;
+
+
+// (f)
+procedure CountLongestWordInString(ch: char; charsInWordCount: longint;
+								   var longestInString: longint);
+begin
+	CountLongestWord(ch, charsInWordCount, longestInString);
+	if ch = #10 then
+	begin
+		writeln('longest in string: ', longestInString);
+		longestInString := 0
+	end
+end;
+
+
+procedure CountSpaceLine(ch: char; var spaceLine: longint);
+begin
+	if ch = ' ' then
+		spaceLine := spaceLine + 1
+end;
+
+procedure ClearCountingSpaceLine(ch: char; var spaceLine: longint);
+begin
+	if ch <> ' ' then
+		spaceLine := 0
+end;
+
+procedure CountLongestSpaceLine(ch: char; spaceLine: longint;
+								var spaceLongestLine: longint);
+begin
+	if ch <> ' ' then
+	begin
+		if spaceLine > spaceLongestLine then
+			spaceLongestLine := spaceLine
 	end
 end;
 
@@ -141,12 +181,16 @@ var
 	wInString: longint;
 	longest, shortest: longint;
 
+	longestInString: longint;
+	spaceLine, spaceLongestLine: longint;
+
 begin
 	while not eof do
 	begin
 		read(ch);
 		CountCharsInWord(ch, charsInWordCount);
-		
+		CountSpaceLine(ch, spaceLine);
+
 		// (a)
 		CountWords(ch, wCount, known, print);
 		// (b)
@@ -157,10 +201,15 @@ begin
 		SaveLastWordChar(ch, lastChar);
 		CountWordsStartAEndZ(ch, lastChar, charsInWordCount, isStartedFromA, fromAtoZWordCount);
 		// (e)
-		CountLongestAndShortestWords(ch, charsInWordCount, longest, shortest);
+		CountLongestWord(ch, charsInWordCount, longest);
+		CountShortestWord(ch, charsInWordCount, shortest);
 		CountWordsInString(ch, wCount, wInString);
+		// (f)
+		CountLongestWordInString(ch, charsInWordCount, longestInString);
+		CountLongestSpaceLine(ch, spaceLine, spaceLongestLine);
 
 		ClearCountingCharsInWord(ch, charsInWordCount);
+		ClearCountingSpaceLine(ch, spaceLine);
 	end;	
 
 	writeln('count: ', wCount);
@@ -171,5 +220,6 @@ begin
 	writeln('started A, ended z: ', fromAtoZWordCount);
 	writeln('longest: ', longest);
 	writeln('shortest: ', shortest);
+	writeln('longest space line: ', spaceLongestLine);
 end.
 
