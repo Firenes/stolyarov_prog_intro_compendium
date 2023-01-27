@@ -9,6 +9,15 @@ begin
 end;
 
 
+function AreAllRoundBracketsClosed(openCount, closedCount: longint): string;
+begin
+	if openCount = closedCount then
+		AreAllRoundBracketsClosed := 'YES'
+	else
+		AreAllRoundBracketsClosed := 'NO'
+end;
+
+
 { Procedures }
 
 procedure CountCharsInWord(ch: char; var charCount: longint);
@@ -162,6 +171,17 @@ begin
 end;
 
 
+// (g)
+procedure CountAllRoundBrackets(ch: char; var openCount, closedCount: longint);
+begin
+	if ch = '(' then
+		openCount := openCount + 1;
+
+	if ch = ')' then
+		closedCount := closedCount + 1;
+end;
+
+
 { Main }
 
 var
@@ -183,6 +203,9 @@ var
 
 	longestInString: longint;
 	spaceLine, spaceLongestLine: longint;
+
+	openRoundBracketsCount: longint;
+	closedRoundBracketsCount: longint;
 
 begin
 	while not eof do
@@ -207,6 +230,8 @@ begin
 		// (f)
 		CountLongestWordInString(ch, charsInWordCount, longestInString);
 		CountLongestSpaceLine(ch, spaceLine, spaceLongestLine);
+		// (g)
+		CountAllRoundBrackets(ch, openRoundBracketsCount, closedRoundBracketsCount);
 
 		ClearCountingCharsInWord(ch, charsInWordCount);
 		ClearCountingSpaceLine(ch, spaceLine);
@@ -221,5 +246,6 @@ begin
 	writeln('longest: ', longest);
 	writeln('shortest: ', shortest);
 	writeln('longest space line: ', spaceLongestLine);
+	writeln('all round brackets closed: ', AreAllRoundBracketsClosed(openRoundBracketsCount, closedRoundBracketsCount));
 end.
 
