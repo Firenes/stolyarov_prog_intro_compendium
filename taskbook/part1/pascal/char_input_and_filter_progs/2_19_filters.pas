@@ -182,6 +182,16 @@ begin
 end;
 
 
+// (h)
+procedure CountTwoSymbolRoundBrackets(ch: char; var previousChar: char; var count: longint);
+begin
+	if (ch = ')') and (previousChar = '(') then
+		count := count + 1;
+
+	previousChar := ch
+end;
+
+
 { Main }
 
 var
@@ -206,6 +216,9 @@ var
 
 	openRoundBracketsCount: longint;
 	closedRoundBracketsCount: longint;
+
+	previousChar: char;
+	twoSymbolRoundBracketsCount: longint;
 
 begin
 	while not eof do
@@ -232,6 +245,8 @@ begin
 		CountLongestSpaceLine(ch, spaceLine, spaceLongestLine);
 		// (g)
 		CountAllRoundBrackets(ch, openRoundBracketsCount, closedRoundBracketsCount);
+		// (h)
+		CountTwoSymbolRoundBrackets(ch, previousChar, twoSymbolRoundBracketsCount);
 
 		ClearCountingCharsInWord(ch, charsInWordCount);
 		ClearCountingSpaceLine(ch, spaceLine);
@@ -247,5 +262,6 @@ begin
 	writeln('shortest: ', shortest);
 	writeln('longest space line: ', spaceLongestLine);
 	writeln('all round brackets closed: ', AreAllRoundBracketsClosed(openRoundBracketsCount, closedRoundBracketsCount));
+	writeln('two symbol round brackets: ', twoSymbolRoundBracketsCount);
 end.
 
