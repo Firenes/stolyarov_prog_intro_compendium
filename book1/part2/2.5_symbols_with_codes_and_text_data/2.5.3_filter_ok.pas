@@ -1,4 +1,4 @@
-program FilterOk; { filter_ok.pas }
+program FilterOk; { 2.5.3_filter_ok.pas }
 
 var
 	c: char;

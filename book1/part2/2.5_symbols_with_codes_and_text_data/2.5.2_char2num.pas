@@ -1,4 +1,4 @@
-program InputCharsToNumbers; { char2num.pas }
+program InputCharsToNumbers; { 2.5.2_char2num.pas }
 
 { Procedure }
 

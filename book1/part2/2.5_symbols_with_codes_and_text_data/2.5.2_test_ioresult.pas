@@ -1,4 +1,4 @@
-program TestIOResult; { test_ioresult.pas }
+program TestIOResult; { 2.5.2_test_ioresult.pas }
 
 var
 	x, y, ioRes: longint;

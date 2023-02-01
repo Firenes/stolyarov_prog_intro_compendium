@@ -1,4 +1,4 @@
-program FilterLen; { filter_len.pas }
+program FilterLen; { 2.5.3_filter_len.pas }
 
 var
 	c: char;

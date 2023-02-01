@@ -1,4 +1,4 @@
-program SkipIntended; { skip_indented.pas }
+program SkipIntended; { 2.5.3_skip_indented.pas }
 
 var
 	c: char;

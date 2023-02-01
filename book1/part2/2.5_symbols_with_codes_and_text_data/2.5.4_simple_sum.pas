@@ -1,4 +1,4 @@
-program SimpleSum; { simple_sum.pas }
+program SimpleSum; { 2.5.4_simple_sum.pas }
 
 var
 	sum, count, n: longint;

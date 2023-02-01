@@ -1,4 +1,4 @@
-program goto_tests;
+program goto_tests; { 2.4.3_goto_test.pas }
 
 { Procedures }
 

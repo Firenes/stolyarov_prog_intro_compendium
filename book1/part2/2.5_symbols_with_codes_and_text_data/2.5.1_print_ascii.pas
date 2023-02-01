@@ -1,4 +1,4 @@
-program PrintAscii;	{ print_ascii.pas }
+program PrintAscii;	{ 2.5.1_print_ascii.pas }
 
 var
 	i, j: integer;
