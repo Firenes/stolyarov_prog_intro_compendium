@@ -1,4 +1,4 @@
-program assignments;
+program assignments; { 2.2.2_assignments.pas }
 
 var
 	x: integer = 25;
