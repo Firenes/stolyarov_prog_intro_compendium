@@ -1,4 +1,4 @@
-program nested_loops;
+program StarSlashNestedLoop; { 2.2.13_star_slash_nested_loop.pas }
 
 var
 	i, j: integer;

@@ -1,4 +1,4 @@
-program year_while_loop;
+program year_while_loop; { 2.2.10_year_while_loop.pas }
 
 var
 	year: integer;

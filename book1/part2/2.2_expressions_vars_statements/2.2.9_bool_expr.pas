@@ -1,4 +1,4 @@
-program bool_expr;
+program bool_expr; { 2.2.9_bool_expr.pas }
 
 // > –– больше
 // < –– меньше

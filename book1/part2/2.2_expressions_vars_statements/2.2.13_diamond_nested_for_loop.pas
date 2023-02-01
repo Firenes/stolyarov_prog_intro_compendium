@@ -1,4 +1,4 @@
-program diamond_nested_for_loop;
+program diamond_nested_for_loop; { 2.2.13_diamond_nested_for_loop.pas }
 
 var
 	n, h, i, j: integer;

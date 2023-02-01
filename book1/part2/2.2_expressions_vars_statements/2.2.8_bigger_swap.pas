@@ -1,4 +1,4 @@
-program bigger_swap;
+program bigger_swap; { 2.2.8 bigger_swap.pas }
 
 var
 	a: integer;

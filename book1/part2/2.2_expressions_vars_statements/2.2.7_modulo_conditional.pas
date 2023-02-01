@@ -1,4 +1,4 @@
-program abs_num_conditional;
+program modulo; { 2.2.7_modulo_conditional.pas }
 
 var
 	x: integer;

@@ -1,4 +1,4 @@
-program bit_operations;
+program bit_operations; { 2.2.14_bit_operations.pas }
 
 var
 	x, y, p, q, r: integer;

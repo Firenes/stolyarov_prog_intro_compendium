@@ -1,4 +1,4 @@
-program for_loop;
+program hello20for; { 2.2.12_hello20_for_loop.pas }
 
 var
 	i: integer;

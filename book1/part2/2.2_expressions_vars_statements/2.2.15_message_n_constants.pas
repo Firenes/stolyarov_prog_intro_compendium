@@ -1,4 +1,4 @@
-program hello_world_const;
+program MessageN_constants; { 2.2.15_message_n_constants.pas }
 
 const
 	message = 'Hello, World!';

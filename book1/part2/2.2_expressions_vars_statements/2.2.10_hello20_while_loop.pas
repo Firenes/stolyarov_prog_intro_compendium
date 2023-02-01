@@ -1,4 +1,4 @@
-program while_loop;
+program hello20; { 2.2.10_hello20_while_loop.pas }
 
 var
 	i: integer;

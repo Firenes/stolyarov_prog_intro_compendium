@@ -1,4 +1,4 @@
-program dividing;
+program dividing; { 2.2.1_dividing.pas }
 
 begin
 	//writeln(14/7)

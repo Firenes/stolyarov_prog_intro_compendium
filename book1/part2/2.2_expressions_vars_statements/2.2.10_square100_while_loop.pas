@@ -1,4 +1,4 @@
-program swquare100_while_loop;
+program square100_while_loop; { 2.2.10_square100_while_loop.pas }
 
 var
 	i: integer;
