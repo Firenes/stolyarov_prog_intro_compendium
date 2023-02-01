@@ -21,9 +21,8 @@ begin
 	if isCharSpacing(ch) then
  	begin
  		if known and print then
-		begin
 			write(rightBracket);
-		end;
+
  		known := false;
 		{ For printing spaces }
 		write(ch);
