@@ -112,10 +112,12 @@ end;
 var
 	height, count: integer;
 begin
-	{ ask user to enter odd number }
+	CheckArguments;
+
+	{ convert first argument to odd number }
 	ConvertArgToHeight(ParamStr(1), height);
 
-	{ ask user to enter diamonds's count }
+	{ convert second argument to diamonds's count }
 	ConvertArgToCount(ParamStr(2), count);
 
 	PrintDiamond(height, count);

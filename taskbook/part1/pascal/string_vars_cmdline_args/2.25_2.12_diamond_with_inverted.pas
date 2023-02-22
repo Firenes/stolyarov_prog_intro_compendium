@@ -13,7 +13,7 @@ end;
 
 procedure CheckArguments;
 begin
-	if (ParamCount = 0) or (ParamCount > 1) then
+	if (ParamCount < 0) or (ParamCount > 1) then
 		InvalidArgumentsAssert;
 end;
 
@@ -124,8 +124,8 @@ end;
 var
 	height: integer;
 begin
-	{ ask user to enter odd number }
 	CheckArguments;
+	{ convert first argument to odd number }
 	ConvertArgToNum(ParamStr(1), height);
 
 	PrintDiamond(height);
