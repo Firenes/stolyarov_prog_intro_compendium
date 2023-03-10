@@ -118,13 +118,6 @@ begin
 	f.bottomRight.x := centerX + halfSize;
 	f.bottomRight.y := centerY + halfSize - 1;
 
-	writeln('centerX: ', centerX, ' centerY: ', centerY, ' halfSize: ', halfSize);
-	writeln('topLeft: ', f.topLeft.x, ':', f.topLeft.y);
-	writeln('topRight: ', f.topRight.x, ':', f.topRight.y);
-
-	writeln('dif left-right: ', f.topRight.x - f.topLeft.x);
-	writeln('dif top-bottom: ', f.bottomRight.y - f.topRight.y);
-
 end;
 
 
