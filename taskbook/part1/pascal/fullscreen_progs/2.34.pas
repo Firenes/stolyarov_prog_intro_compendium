@@ -1,4 +1,4 @@
-program RandomStarMove; { 2.33.pas }
+program RandomStarMove2; { 2.34.pas }
 
 uses crt;
 
