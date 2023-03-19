@@ -10,7 +10,11 @@ const
 	Directions = 4;
 	MovesDelay = 10;
 	BaseSize = 3;
+	MaxTotalMoves = 1000; { Max moves to lose }
+	MaxTotalTaps = 50; { Max arrow taps }
 
+	WinMessage = 'YOU WIN';
+	LoseMessage = 'GAME OVER';
 
 { Types }
 
@@ -126,9 +130,9 @@ begin
 
 	s.CurY := s.CurY + s.dy;
 	if s.CurY > ScreenHeight then
-		s.CurY := 1
+		s.CurY := 2
 	else
-	if s.CurY < 1 then
+	if s.CurY < 2 then
 		s.CurY := ScreenHeight;
 
 	ShowStar(true, s)
@@ -176,7 +180,8 @@ begin
 end;
 
 
-procedure HandleDirection(key: integer; var dir: integer; var esc: boolean);
+procedure HandleDirection(key: integer; var dir: integer;
+						  var esc, isPaused: boolean);
 begin
 	case key of
 		-75: dir := ord(Direction.DLeft); { Left }
@@ -184,18 +189,28 @@ begin
 		-72: dir := ord(Direction.DUp); { Up }
 		-80: dir := ord(Direction.DDown); { Down }
 		27: esc := true; { Esc }
+		ord(' '): isPaused := not isPaused; { Space }
 	end
 end;
 
-procedure CompleteWinGame;
-var
-	winMsg: string;
+
+procedure SetLimitToGameOver(totalMoves, totalTaps: integer);
 begin
-	winMsg := 'YOU WIN';
-	
+	write('Moves: ', totalMoves, '. Taps: ', totalTaps);
+end;
+
+
+procedure CheckIsGameOver(totalMoves, totalTaps: integer; var isGameOver: boolean);
+begin
+	isGameOver := (totalMoves >= MaxTotalMoves) or (totalTaps >= MaxTotalTaps)
+end;
+
+
+procedure CompleteGame(msg: string);
+begin
 	clrscr;
-	GotoXY(ScreenWidth div 2 - length(winMsg) div 2, ScreenHeight div 2);	
-	write(winMsg);
+	GotoXY(ScreenWidth div 2 - length(msg) div 2, ScreenHeight div 2);	
+	write(msg);
 	GotoXY(1, 1);
 
 	while not KeyPressed do
@@ -213,7 +228,8 @@ var
 	currDir, moves: integer;
 	isManualDir: boolean;
 	nextDir, delayMoves: integer;
-	esc, isComplete: boolean;
+	esc, isComplete, isGameOver, isPaused: boolean;
+	totalMoves, totalTaps: integer;
 begin
 	clrscr;
 
@@ -231,13 +247,17 @@ begin
 	nextDir := 0;
 	delayMoves := 0;
 	esc := false;
+	isPaused := false;
+	totalMoves := 0;
+	totalTaps := 0;
 
 	ShowStar(true, s);
 
 	while true do
 	begin
-		if not KeyPressed then
+		if not KeyPressed and not isPaused then
 		begin
+			SetLimitToGameOver(totalMoves, totalTaps);
 			if (nextDir <> 0) and (delayMoves = 0) then
 			begin
 				currDir := nextDir;
@@ -249,6 +269,7 @@ begin
 			SetRandomDirectionIfNeeded(s, moves, currDir, isManualDir);
 			MoveStar(s);
 			moves := moves - 1;
+			totalMoves := totalMoves + 1;
 			if delayMoves <> 0 then
 				delayMoves := delayMoves - 1;
 			if moves = 0 then
@@ -256,6 +277,10 @@ begin
 
 			CheckStarInField(s, f, isComplete);
 			if isComplete then
+				break;
+
+			CheckIsGameOver(totalMoves, totalTaps, isGameOver);
+			if isGameOver then
 				break;
 
 			delay(DelayDuration);
@@ -266,9 +291,10 @@ begin
 
 		if (key = -77) or (key = -75) or (key = -72) or (key = -80) then
 		begin
+			totalTaps := totalTaps + 1;
 			if delayMoves <> 0 then
 			begin
-				HandleDirection(key, nextDir, esc);
+				HandleDirection(key, nextDir, esc, isPaused);
 				continue
 			end;
 			moves := 0;
@@ -276,13 +302,16 @@ begin
 			if delayMoves = 0 then
 				delayMoves := MovesDelay;
 		end;
-		HandleDirection(key, currDir, esc);
+		HandleDirection(key, currDir, esc, isPaused);
 		if esc then
 			break;
 	end;
 
 	if isComplete then
-		CompleteWinGame;
+		CompleteGame(WinMessage);
+
+	if isGameOver then
+		CompleteGame(LoseMessage);
 
 	clrscr
 end.
