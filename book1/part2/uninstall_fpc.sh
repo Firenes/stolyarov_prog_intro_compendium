@@ -1,86 +1,83 @@
 #!/bin/sh
-# Uninstaller for FPC 3.2.x and Lazarus 2.0.11, 2.0.12 and 2.2.0
+#
+# Uninstaller script for FPC 3.x.x and Lazarus 2.0.8 to 2.0.10
 #
 bin=/usr/local/bin
+private=/private/etc
 share=/usr/local/share
 lib=/usr/local/lib
+library=/Library
 receipts=/private/var/db/receipts
-private=/private/etc
 fpcdoc="/Users/Shared/Free Pascal Compiler"
 manpages=/usr/local/share/man
+app=/Applications
 
-rm -fv $bin/ptop.rsj
-rm -fv $bin/unitdiff.rsj
-rm -fv $bin/fpclasschart.rsj
-rm -fv $bin/makeskel.rsj
-rm -fv $bin/fpcsubst.rsj
-rm -fv $bin/rstconv.rsj
-rm -fv $bin/fpcmkcfg.rsj
-rm -fv $bin/pas2ut.rsj
-rm -fv $bin/fd2pascal
-rm -fv $bin/h2paspp
-rm -fv $bin/postw32
+rm -fv $bin/pas2js
+rm -fv $bin/pas2jni
+rm -fv $bin/pas2fpm
+rm -fv $bin/mkx86ins
+rm -fv $bin/mkinsadd
 rm -fv $bin/mkarmins
 rm -fv $bin/mka64ins
-rm -fv $bin/data2inc
-rm -fv $bin/msg2inc
-rm -fv $bin/mkx86ins
-rm -fv $bin/ppdep
-rm -fv $bin/mkinsadd
-rm -fv $bin/chmls
-rm -fv $bin/rmcvsdir
-rm -fv $bin/fpc
-rm -fv $bin/mkz80ins
-rm -fv $bin/delp
-rm -fv $bin/h2paschk
-rm -fv $bin/plex
-rm -fv $bin/pyacc
-rm -fv $bin/eawparser
-rm -fv $bin/gbpparser
-rm -fv $bin/ppufiles
-rm -fv $bin/ppumove
-rm -fv $bin/chmcmd
-rm -fv $bin/fpcsubst
-rm -fv $bin/mkx86inl
-rm -fv $bin/fprcp
-rm -fv $bin/wasmtool
-rm -fv $bin/instantfpc
-rm -fv $bin/bin2obj
-rm -fv $bin/h2pas
-rm -fv $bin/wasa
-rm -fv $bin/fpcreslipo
-rm -fv $bin/fpcmake
-rm -fv $bin/unihelper
-rm -fv $bin/rstconv
-rm -fv $bin/fpcjres
-rm -fv $bin/pas2jni
-rm -fv $bin/fpcres
-rm -fv $bin/fpcmkcfg
-rm -fv $bin/ppudump
-rm -fv $bin/unitdiff
+rm -fv $bin/makeskel.rsj
 rm -fv $bin/makeskel
-rm -fv $bin/cldrparser
-rm -fv $bin/ihxutil
-rm -fv $bin/ptop
-rm -fv $bin/fpclasschart
-rm -fv $bin/webidl2pas
 rm -fv $bin/json2pas
-rm -fv $bin/pas2fpm
-rm -fv $bin/pas2ut
+rm -fv $bin/instantfpc
+rm -fv $bin/h2paspp
+rm -fv $bin/h2pas
+rm -fv $bin/fprcp
 rm -fv $bin/fppkg
-rm -fv $bin/pas2js
-rm -fv $bin/compileserver
 rm -fv $bin/fpdoc
-rm -fv $bin/ppca64
+rm -fv $bin/fpcsubst.rsj
+rm -fv $bin/fpcsubst
+rm -fv $bin/fpcreslipo
+rm -fv $bin/fpcres
+rm -fv $bin/fpcmkcfg.rsj
+rm -fv $bin/fpcmkcfg
+rm -fv $bin/fpcmake
+rm -fv $bin/fpclasschart.rsj
+rm -fv $bin/fpclasschart
+rm -fv $bin/fpcjres
+rm -fv $bin/fpc
+rm -fv $bin/fd2pascal
+rm -fv $bin/delp
+rm -fv $bin/data2inc
+rm -fv $bin/compileserver
+rm -fv $bin/cldrparser
+rm -fv $bin/chmls
+rm -fv $bin/chmcmd
+rm -fv $bin/bin2obj
+rm -fv $bin/webidl2pas
+rm -fv $bin/unitdiff.rsj
+rm -fv $bin/unitdiff
+rm -fv $bin/unihelper
+rm -fv $bin/rstconv.rsj
+rm -fv $bin/rstconv
+rm -fv $bin/rmcvsdir
+rm -fv $bin/pyacc
+rm -fv $bin/ptop.rsj
+rm -fv $bin/ptop
+rm -fv $bin/ppumove
+rm -fv $bin/ppufiles
+rm -fv $bin/ppudump
+rm -fv $bin/ppdep
+rm -fv $bin/postw32
+rm -fv $bin/plex
+rm -fv $bin/pas2ut.rsj
+rm -fv $bin/pas2ut
 rm -fv $bin/ppcx64
 rm -fv $bin/ppc386
+rm -fv $bin/lazbuild
 
 rm -rfv $private/lazarus
-rm -rfv /Applications/Lazarus
+
 rm -rfv $share/fpcsrc
 rm -rfv $share/src/fpc-*
 rm -rfv $share/doc/fpc-*
+
 rm -rfv $lib/fpc
+
+rm -rfv $library/Lazarus
 
 rm -rfv $receipts/org.lazarus*
 rm -rfv $receipts/org.freepascal*
@@ -129,6 +126,8 @@ rm -fv $manpages/man1/unitdiff.1.gz
 rm -fv $manpages/man5/fpc.cfg.5.gz
 rm -fv $manpages/man5/fpcmake.5.gz
 rm -fv $manpages/man5/ptop.cfg.5.gz
+
+rm -fv /Applications/Lazarus.app  
 
 rm -fv /etc/fpc.cfg
 rm -fv ~/.fpc.cfg
