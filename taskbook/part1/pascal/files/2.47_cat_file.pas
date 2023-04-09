@@ -22,7 +22,7 @@ begin
 		halt(1)
 	end;
 
-	while not SeekEof(f) do
+	while not eof(f) do
 	begin
 		readln(f, content);
 		writeln(content);
