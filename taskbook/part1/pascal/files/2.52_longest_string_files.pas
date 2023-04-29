@@ -18,20 +18,20 @@ begin
 end;
 
 
-function GetFileWithLongestLine(var fiArray: FileInfoArray): longint;
+function HasFileLongestLine(currFile, longestLine: longint; var fiArray: FileInfoArray): boolean;
 var
 	i: integer;
-	suitableFile, longestLine: longint;
 begin
-	suitableFile := 1;
-	longestLine := fiArray[1].maxLength;
-
 	for i := 1 to length(fiArray) do
 	begin
-		if fiArray[i].maxLength > longestLine then
-			suitableFile := i
+		if (fiArray[i].maxLength = longestLine) and (currFile = i) then
+		begin
+			HasFileLongestLine := true;
+			exit
+		end;
 	end;
-	GetFileWithLongestLine := suitableFile
+
+	HasFileLongestLine := false
 end;
 
 
@@ -64,6 +64,22 @@ begin
 end;
 
 
+procedure GetLongestLine(var fiArray: FileInfoArray; var longestLine: longint);
+var
+	i: integer;
+	temp: longint;
+begin
+	temp := fiArray[1].maxLength;
+
+	for i := 1 to length(fiArray) do
+	begin
+		if fiArray[i].maxLength > temp then
+			temp := fiArray[i].maxLength;
+	end;
+	longestLine := temp
+end;
+
+
 { Main }
 
 var
@@ -73,7 +89,7 @@ var
 	fInfo: FileInfo;
 	fiArray: FileInfoArray;
 	fileLineCount, maxFileLine, maxLineCount, currLineCount: longint;
-	fileWithLongestLine: longint;
+	longestLine: longint;
 begin
 	{$I-}
 	if ParamCount < 1 then
@@ -125,9 +141,9 @@ begin
 
 		close(f)
 	end;
-	
-	fileWithLongestLine := GetFileWithLongestLine(fiArray);
 
+	GetLongestLine(fiArray, longestLine);
+	
 	for i := 1 to length(fiArray) do
 	begin
 		assign(f, ParamStr(i));
@@ -139,7 +155,7 @@ begin
 			halt(1);
 		end;
 
-		if fileWithLongestLine = i then
+		if HasFileLongestLine(i, longestLine, fiArray) then
 			write('*');		
 
 		write(ParamStr(i), ':');
