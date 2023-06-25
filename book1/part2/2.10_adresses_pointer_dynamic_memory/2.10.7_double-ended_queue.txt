@@ -1,0 +1,172 @@
+Двусвязные списка; деки
+
+Двусвязный список – список, который хранит в себе два указателя на следующий
+элемент и предыдущий.
+
+----------------------------------
+type
+	item2ptr = ^item2;
+	item2 = record
+		data: integer;
+		prev, next: item2ptr;
+	end;
+----------------------------------
+
+Преимущества двусвязного списка:
+- Симметрия, которая позволяет выстраивать как в прямом, так и в обратном
+  направлении;
+- Зная адрес любого из звеньев двусвязанного списка, можно найти в памяти
+  все его звенья.
+
+Вставка слева:
+----------------------------------
+new(tmp);
+tmp^.prev := current^.prev;
+tmp^.next := current;
+tmp^.data := n;
+if current^.prev = nil then
+	first := tmp
+else
+	current^.prev^.next := tmp;
+current^.prev := tmp;
+----------------------------------
+
+Вставка справа:
+----------------------------------
+new(tmp);
+tmp^.prev := current;
+tmp^.next := current^.next;
+tmp^.data := n;
+if current^.next = nil then
+	last := tmp;
+else
+	current^.next^.prev := tmp;
+current^.next := tmp;
+----------------------------------
+
+Удаление текущего элемента:
+----------------------------------
+if current^.prev = nil then
+	first := current^.next
+else
+	current^.prev^.next := current^.next;
+
+if current^.next = nil then
+	last := current^.prev
+else
+	current^.next^.prev := current^.prev;
+dispose(current);
+----------------------------------
+
+Недостаток `current` заключатется в том, что после его выполнения, он
+указывает на уничтоженный элемент. Этого можно избежать, если использовать
+временный указатель для удаления элемента, а в `current` предварительно
+занести адрес предыдущего или следующего.
+
+Добавление элемента в самое начало списка:
+----------------------------------
+new(tmp);
+tmp^.data := n;
+tmp^.prev := nil;
+tmp^.next := first;
+if first = nil then
+	last := tmp
+else
+	first^.prev := tmp;
+first := tmp;
+----------------------------------
+
+Добавление элемента в самый конец списка:
+----------------------------------
+new(tmp);
+if current = nil then
+	tmp^.prev := last
+else
+	tmp^.prev := current^.prev;
+
+tmp^.next := current;
+tmp^.data := n;
+
+if tmp^.prev = nil then
+	first := tmp
+else
+	tmp^.prev^.next := tmp;
+
+if tmp^.next = nil then
+	last := tmp
+else
+	tmp^.next^.prev := tmp;
+----------------------------------
+
+Вставка справа от несуществующего элемента или вставка в начало:
+----------------------------------
+tmp^.prev := current;
+if current = nil then
+	tmp^.next := first
+else
+	tmp^.next := current^.next;
+----------------------------------
+
+
+Двусвязные списки позволяют создавать объект, который называют *декой*
+(deque – double-ended queue, который был сокращён до dequeue,
+а потом до deque).
+Дека – абстрактный объект, поддерживающий 4 операции:
+- добавление в начало (pushfront);
+- добавление в конец (pushback);
+- извлечение из начала (popfront);
+- извлечение из конца (popback).
+
+Значение, добавленное в начало деки, можно сразу извлечь обратно (применив
+извлечение из начала).
+Но если извлечь из конца, то значение, только что добавленное в начало,
+будет извлечено после всех остальных значений, хранимых в деке.
+С добавление в конец и извлечением из начала ситуация симметричная.
+
+При использовании только добавления в начало и извлечение из начала, дека
+превращается в стек (также, если добавлять в конец и извлекать из конца).
+Если добавлять в начало и извлекать из конца – в очередь.
+
+Использовать деку для стека или очереди нерационально. Односвязаный список
+проще в реализации.
+
+
+Описание интерфейса деки:
+----------------------------------
+type
+	LongItem2Ptr = ^LongItem2;
+	LongItem2 = record
+		data: longint;
+		prev, next: LongItem2Ptr;
+	end;
+
+	LongDeque = record
+		first, last: LongItem2Ptr;
+	end;
+
+procedure LongDequeInit(var deque: LongDeque);
+begin
+end;
+
+procedure LongDequePushFront(var deque: LongDeque; n: longint);
+begin
+end;
+
+procedure LongDequePushBack(var deque: LongDeque; n: longint);
+begin
+end;
+
+procedure LongDequePopFront(var deque: LongDeque; var n: longint);
+begin
+end;
+
+procedure LongDequePopBack(var deque: LongDeque; var n: longint);
+begin
+end;
+
+procedure LongDequeIsEmpty(var deque: LongDeque): boolean;
+begin
+end;
+----------------------------------
+
+Реализацию см. 2.10.7_deque.pas
