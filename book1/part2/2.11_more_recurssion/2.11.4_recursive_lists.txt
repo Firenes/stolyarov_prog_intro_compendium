@@ -1,0 +1,77 @@
+2.11.4 Рекурсия при работе со списками
+
+Односвязный список рекурсивный по своей природе: он либо пустой, либо состоит из первого элемента.
+
+```
+type
+	itemptr = ^item;
+	item = record
+		data: integer;
+		next: itemptr
+	end;
+```
+
+Итеративный способ подсчёта суммы элементов из списка:
+
+```
+function ItemListSum(p: itemptr)i : integer;
+var
+	sum: integer;
+	tmp: itemptr;
+begin
+	sum := 0;
+	tmp := p;
+	
+	while tmp <> nil do
+	begin
+		sum := sum + tmp^.data;
+		tmp := tmp^.next;
+	end;
+
+	ItemListSum := sum
+end;
+```
+
+
+Рекурсивный способ:
+
+```
+function ItemListSum(p: itemptr) : integer;
+begin
+	if p = nil then
+		ItemListSum := 0
+	else
+		ItemListSum := p^.data + ItemListSum(p^.next)
+end;
+```
+
+
+Удаление элементов:
+```
+procedure DisposeItemList(p: itemptr);
+begin
+	if p = nil then
+		exit;
+	DisposeItemList(p^.next);
+	dispose(p)
+end; 
+```
+
+
+Пример вставки числа в отсортированный список:
+```
+procedure AddNumIntoSortedList(var p: itemptr; n: integer);
+var
+	tmp: integer;
+begin
+	if (p = nil) or (p^.data > n) then
+	begin
+		new(tmp);
+		tmp^.data := n;
+		tmp^.next := p;
+		p := tmp
+	end
+	else
+		AddNumIntoSortedList(p^.next, n)
+end;
+```
