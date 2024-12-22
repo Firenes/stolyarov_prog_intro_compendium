@@ -1,0 +1,107 @@
+2.12.4 Особенности оформления оператора выбора
+
+Метки, обозначающеее начало очередной альтернативы в операторе выбора,
+можно либо оставлять в той колонке, где начинается заголовок оператора
+выбора, либо сдвинуть относительно заголовка на размер отступа.
+
+```
+case Operation of
+    '+': begin
+        writeln('Addition');
+        c := a + b
+    end;
+    '-': begin
+        writeln('Subtraction');
+        c := a - b
+    end;
+    else begin
+        writeln('Error')
+        c := 0
+    end
+end
+```
+
+или:
+
+```
+case Operation of
+'+': begin
+    writeln('Addition');
+    c := a + b
+end;
+'-': begin
+    writeln('Subtraction');
+    c := a - b
+end;
+else begin
+    writeln('Error')
+    c := 0
+end
+end
+```
+
+Вариант со сносом begin:
+
+```
+case Operation of
+    '+':
+    begin
+        writeln('Addition');
+        c := a + b
+    end;
+    '-':
+    begin
+        writeln('Subtraction');
+        c := a - b
+    end;
+    else
+    begin
+        writeln('Error')
+        c := 0
+    end
+end
+```
+
+или:
+
+```
+case Operation of
+'+':
+begin
+    writeln('Addition');
+    c := a + b
+end;
+'-':
+begin
+    writeln('Subtraction');
+    c := a - b
+end;
+else
+begin
+    writeln('Error')
+    c := 0
+end
+end
+```
+
+либо со сдвигном меток:
+
+```
+case Operation of
+'+':
+    begin
+        writeln('Addition');
+        c := a + b
+    end;
+'-':
+    begin
+        writeln('Subtraction');
+        c := a - b
+    end;
+else
+    begin
+        writeln('Error')
+        c := 0
+    end
+end
+```

@@ -1,0 +1,50 @@
+2.12.3 Оператор if с веткой else
+
+Без операторных скобок:
+
+```
+if p <> nil then
+    res := p^.data
+else
+    res := 0;
+```
+
+С операторными скобками:
+
+```
+if p <> nil then
+begin
+    flag := true;
+    x := p^.data
+end
+else
+begin
+    new(p);
+    p^.data := x
+end;
+```
+
+Если открывающаяся операторная строка на одном уровне с условием:
+
+```
+if p <> nil then begin
+    flag := true;
+    x := p^.data
+end else begin
+    new(p);
+    p^.data := x
+end;
+```
+
+или:
+
+```
+if p <> nil then begin
+    flag := true;
+    x := p^.data
+end
+else begin
+    new(p);
+    p^.data := x
+end;
+```

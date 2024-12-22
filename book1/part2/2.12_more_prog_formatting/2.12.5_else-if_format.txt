@@ -1,0 +1,94 @@
+2.12.5 Последовательности взаимоисключащих if'ов
+
+Важное ограничение оператора выбора: условием перехода на одну из меток
+является равенство селектирующего выражения одной из констант, причём
+как константы, так и выражение обязаны иметь порядковый тип.
+
+Если выбор необходимо сделать из нескольких условий, то призодится
+использовать длинную цепочку операторов ветвления:
+
+`if // else if // else if // ... // else`
+
+```
+if cmd = "Save" then
+begin
+    writeln('Saving...');
+    SaveFile
+end
+else
+if cmd = "Load" then
+begin
+    writeln('Loading...');
+    LoadFile
+end
+else
+if cmd = "Quit" then
+begin
+    writeln('Good bye...');
+    QuitProgram
+end
+else
+begin
+    writeln('Unknown command')
+end;
+```
+
+без разделения else-if:
+
+```
+if cmd = "Save" then
+begin
+    writeln('Saving...');
+    SaveFile
+end
+else if cmd = "Load" then
+begin
+    writeln('Loading...');
+    LoadFile
+end
+else if cmd = "Quit" then
+begin
+    writeln('Good bye...');
+    QuitProgram
+end
+else
+begin
+    writeln('Unknown command')
+end;
+```
+
+без сноса begin:
+
+```
+if cmd = "Save" then begin
+    writeln('Saving...');
+    SaveFile
+end else
+if cmd = "Load" then begin
+    writeln('Loading...');
+    LoadFile
+end else
+if cmd = "Quit" then begin
+    writeln('Good bye...');
+    QuitProgram
+end else begin
+    writeln('Unknown command')
+end;
+```
+
+или так:
+
+```
+if cmd = "Save" then begin
+    writeln('Saving...');
+    SaveFile
+end else if cmd = "Load" then begin
+    writeln('Loading...');
+    LoadFile
+end else if cmd = "Quit" then begin
+    writeln('Good bye...');
+    QuitProgram
+end else begin
+    writeln('Unknown command')
+end;
+```
