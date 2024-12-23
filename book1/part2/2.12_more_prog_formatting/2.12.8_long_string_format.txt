@@ -1,0 +1,148 @@
+2.12.8 Как разбить длинную строку
+
+Если заголовок сложного оператора приходится разнести на несколько строк,
+то:
+- Разбейте выражение в заголовке на несколько строк; предпочтичтельно
+  разрывать строку по "операции верхнего уровня", это обычно логическая
+  связка "и" либо "или";
+- Каждую последующую строку заголовка сдвиньте относительно первой строки
+  заголовка на обычный размер отступа;
+- Вне зависимости от количества простых операторов в теле, обязательно
+  возьмите тело вашего оператора в операторные скобки, то есть сделайте
+  его составным оператором;
+- Вне зависимости от используемого стиля, снесите открывающую операторную
+  скобку на следующую строку, чтобы она послужила зрительным разделитем
+  между строками заголовка и строками тела вашего оператора.
+
+Всё вместе будет выглядеть примерно так:
+```
+while (TheCollection^.KnownSet^.First = nil) and
+    (TheCollection^.ToParse^.First <> nil) and
+    (TheCollection^.ToParse^.First^.s = ' ') do
+begin
+    SkipSpace(TheCollection)
+end;
+```
+
+Если выражение длинное, то разбить строку можно по знаку присваивания:
+```
+MyArray[f(x)].ThePtr^.MyField :=
+    StrangeFunction(p, q, r) + AnotherStrangeFunction(z);
+```
+
+Если выражение также не помещается, то можно разбить по знакам операций
+наименьшего приоритета:
+```
+MyArray[f(x)].ThePtr^.MyField :=
+    StrangeFunction(p, q, r) * SillyCoeff +
+    AnotherStrangeFunction(z) / SecondSillyCoeff +
+    JustAVariable;
+```
+
+либо так:
+```
+MyArray[f(x)].ThePtr^.MyField :=
+    StrangeFunction(p, q, r) * SillyCoeff +
+    AnotherStrangeFunction(z) *
+        FunctionWhichReturnsCoeff(z) *
+        AnotherSillyFunction(z) +
+    JustAVariable;
+```
+
+Если выраженгие состоит из большого количества подвыражений верхнего уровня:
+```
+MyArray[f(x)].ThePtr^.MyField :=
+    a + b + c + d + e + f + g + h + i + j + k + l + m +
+    n + o + p + q + r + s + t + u + v + w + x + y + z;
+```
+
+Если длинное выражение присваивается к переменной, то можно использовать
+такие варианты:
+```
+MyArray[n] := StrangeFunction(p, q, r) * SillyCoeff +
+    AnotherStrangeFunction(z) / AnotherCoeff +
+    JustAVariable;
+```
+
+либо так, но только за счёт пробелов, без табов:
+```
+MyArray[n] := StrangeFunction(p, q, r) * SillyCoeff +
+              AnotherStrangeFunction(z) / AnotherCoeff +
+              JustAVariable;
+```
+
+либо вот такой компромиссный вариант (мб даже более приоритетный) с
+переносом выражения на новую строку:
+```
+MyArray[n] :=
+    StrangeFunction(p, q, r) * SillyCoeff +
+    AnotherStrangeFunction(z) / AnotherCoeff +
+    JustAVariable;
+```
+
+
+Если длинные параметры в вызове подпрограммы (кмк вариант не очень):
+```
+VeryGoodProcedure("This is the first parameter",
+    "Another parameter", YetAnotherParameter,
+    More + Parameters * ToCome);
+```
+
+либо так, но с пробелами и без табуляции:
+```
+VeryGoodProcedure("This is the first parameter",
+                  "Another parameter",
+                  YetAnotherParameter,
+                  More + Parameters * ToCome);
+```
+
+либо так, компромиссный (кмк более приоритетный):
+```
+VeryGoodProcedure(
+    "This is the first parameter",
+    "Another parameter",
+    YetAnotherParameter,
+    More + Parameters * ToCome
+);
+```
+
+
+Если подпрограмма вышла длинной, то procedure или function можно оставить
+на отдельной строке и тело подпрограммы перенести на строку ниже без
+отступа:
+```
+procedure
+VeryGoodProcedure(fpar: integer; spar: MyBestPtr; str: string);
+begin
+    { ... }
+end;
+```
+
+```
+function
+VeryGoodFunction(fpar: integer; spar: MyBestPtr; str: string)
+                                            : ExcellentRecordPtr;
+begin
+    { ... }
+end;
+```
+
+Возвращаемый тип лучше оставить справа, т.к. это привычное для него место.
+
+
+Если строковая константа не помещается в одну строку, то её нельзя
+экранировать (почему? не понятно, мб из-за отступов, которые будут
+пробелами):
+```
+writeln('This is a string which unfortunately is \
+too long to fit on a single code line')
+```
+
+В Паскале можно сделать использовать конкатенацию:
+```
+writeln('This is a string which unfortunately is ' +
+        'too long to fit on a single code line');
+```
+
+Длинные строковые константы лучше не допускать: либо сокращать, либо,
+как варант, вынести в отдельную константную переменную.
